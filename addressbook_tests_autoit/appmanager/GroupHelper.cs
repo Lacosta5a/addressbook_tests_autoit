@@ -25,7 +25,7 @@ namespace addressbook_tests_autoit
    
         private void ConfirmRemoval()
         {
-            aux.ControlClick(DELETEGROUP, "", "[CLASSNN:WindowsForms10.BUTTON.app.0.2c908d51;TEXT:Delete the selected group, subgroups and contacts]");
+            aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d51");
             aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d53");
         }
 
