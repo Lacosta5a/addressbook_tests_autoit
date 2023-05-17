@@ -19,7 +19,7 @@ namespace addressbook_tests_autoit
             {
                 GroupData newGroup = new GroupData()
                 {
-                    Name = "123"
+                    Name = "222"
                 };
                 app.Groups.Add(newGroup);
             }
