@@ -20,5 +20,6 @@ namespace addressbook_tests_autoit
         {
             return this.Name.Equals(other.Name);
         }
+
     }
 }

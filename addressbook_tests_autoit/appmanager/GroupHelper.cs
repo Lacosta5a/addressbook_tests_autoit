@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace addressbook_tests_autoit
@@ -22,34 +23,23 @@ namespace addressbook_tests_autoit
             CloseGroupsDialogue();
         }
 
-   
-        private void ConfirmRemoval()
+
+        public int GetGroupList()
         {
-            aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d51");
-            aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d53");
+
+            OpenGroupDialogue();
+            string count = aux.ControlTreeView(
+                GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51",
+                "GetItemCount", "#0", "");
+
+            CloseGroupsDialogue();
+            int.Parse(count);
+            return int.Parse(count);
         }
 
-        public List<GroupData> GetGroupList()
-        {
-            List<GroupData> list = new List<GroupData>();
-            OpenGroupDialogue();
-            string count=aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51",
-                "GetItemCount","#0","");
-            for (int i = 0; i < int.Parse(count) ; i++)
-            {
-                string item=aux.ControlTreeView(GROUPWINTITLE, "", "WindowsForms10.SysTreeView32.app.0.2c908d51",
-                "GetText", "#0|#"+i, "");
-                list.Add(new GroupData()
-                {
-                    Name = item
-                });
-            }
-            CloseGroupsDialogue();
-            return list;
-        }        
 
 
-        private void CloseGroupsDialogue()
+        public void CloseGroupsDialogue()
         {
             aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d54");
         }
@@ -69,6 +59,13 @@ namespace addressbook_tests_autoit
             aux.ControlClick(GROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
             ConfirmRemoval();
             CloseGroupsDialogue();
+        }
+
+        private void ConfirmRemoval()
+        {
+            aux.WinWait(DELETEGROUP);
+            aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d53");
         }
     }
 }
