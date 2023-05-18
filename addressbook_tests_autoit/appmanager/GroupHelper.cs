@@ -67,5 +67,17 @@ namespace addressbook_tests_autoit
             aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d51");
             aux.ControlClick(DELETEGROUP, "", "WindowsForms10.BUTTON.app.0.2c908d53");
         }
+
+        public void CheckIf2GroupsExist()
+        {
+            if (GetGroupList() == 1)
+            {
+                GroupData newGroup = new GroupData()
+                {
+                    Name = "222"
+                };
+                Add(newGroup);
+            }
+        }
     }
 }

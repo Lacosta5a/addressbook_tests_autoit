@@ -12,22 +12,14 @@ namespace addressbook_tests_autoit
         [Test]
         public void TestGroupRemoval()
         {
+            app.Groups.CheckIf2GroupsExist();
 
             int oldGroups = app.Groups.GetGroupList();
-
-            if (oldGroups == 1)
-            {
-                GroupData newGroup = new GroupData()
-                {
-                    Name = "222"
-                };
-                app.Groups.Add(newGroup);
-            }
 
             app.Groups.Remove();
 
 
-            int newGroups = app.Groups.GetGroupList();
+            int newGroups = app.Groups.GetGroupList();            
 
             Assert.AreEqual(oldGroups-1, newGroups);
         }       
